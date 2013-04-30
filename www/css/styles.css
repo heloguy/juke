@@ -1,0 +1,163 @@
+@charset "UTF-8";
+/* CSS Starter Template */
+
+/*
+ http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	background: #000 url('../images/jukebox.jpg') no-repeat 50% 0;
+	line-height: 1;
+	font: 62.5% Helvetica, san-serif;
+}
+ol, ul {
+	list-style: none;
+}
+strong {
+	font-weight: inherit;
+	font-style: normal;
+}
+/* // - - Modular Styles - - \\ */
+/*.wrap {width:960px; margin:0 auto;overflow:hidden; }*/
+.block {display:block; }
+.clear {clear:both; }
+.rel {position:relative; }
+.fl-right {float:right; }
+.fl-left {float:left; }
+/* // ClearFix \\ */
+.group:before,
+.group:after {
+    content:"";
+    display:table;
+}
+.group:after {
+    clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+/* // - - JUKEBOX STYLES - - \\ */
+
+#searchbar {
+	width: 270px;
+	margin: 372px auto 30px;	
+	
+}
+#search {
+	width: 150px;
+	margin: 0 10px 12px 0;
+	padding: 6px;
+	border-radius: 6px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	box-shadow: 0 0 4px rgba(0,0,0,0.9);
+	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.9);
+	
+}
+input[type="button"] {
+	color: #fff;
+	text-shadow: 0 2px #054b7f;
+	background-color: #0f66a6;
+	border: 1px solid #054b7f;
+	border-radius: 4px;
+	margin: 0 10px 10px 0;
+	padding: 4px 6px;
+	box-shadow: 0 0 2px rgba(0,0,0,0.6), inset -1px -1px 3px rgba(0,0,0,0.3), inset 0 1px 4px rgba(255,255,255,0.4), inset -2px 0 2px #054b7f;
+	-moz-box-shadow: 0 0 2px rgba(0,0,0,0.6), inset -1px -1px 3px rgba(0,0,0,0.3), inset 0 1px 4px rgba(255,255,255,0.4), inset -2px 0 2px #054b7f;
+	-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.6), inset -1px -1px 3px rgba(0,0,0,0.3), inset 0 1px 4px rgba(255,255,255,0.4), inset -2px 0 2px #054b7f;
+}
+input[type="button"]:hover {
+	cursor: pointer;
+	text-shadow: 0 0 3px rgba(255,255,255,0.6);
+}
+input[type="button"]:active {
+	position: relative;
+	top: 1px;
+	padding-bottom: 3px;
+	box-shadow:  0 0 2px rgba(0,0,0,0.6), inset -1px -1px 3px rgba(0,0,0,0.3), inset 0 1px 4px rgba(255,255,255,0.4), inset 0 -1px 3px rgba(0,0,0,0.4);
+}
+#results {
+	/*
+	position: fixed;
+	bottom: 0;*/
+	width: 80%;
+	min-height: 150px;
+	/*overflow: scroll;*/
+	margin: 0 auto;
+	padding: 15px;
+	border: 10px solid #fff;
+	border-radius: 10px;
+	background-color: #fdea81;
+	box-shadow: inset 0 0 45px rgba(246,211,16,0.8), 0 0 40px rgba(0,0,0,0.4);	
+}
+div.add_button:hover {
+	background-color: f6d310;
+	cursor: pointer;
+}
+div.add_button:active {
+	position:relative;
+	top: 1px;
+}
+
+.playing_song
+{
+	font-weight: bold;
+	color: seagreen;
+	font-size: 1.0em;
+	border: solid 2px;
+}
+
+td
+{
+	padding-right: 1.5em; 
+}
+
+.track_info
+{
+	width: 10em;
+}
+
+tr.header_row
+{
+	color: seagreen;
+	font-size: 2.6em;
+	font-weight: bold; 
+	padding-bottom: 1em;
+}
+
+tr.music_content
+{
+	font-size: 2em; 
+}       
+            
+td.add_button
+{
+	color: seagreen;
+	font-size: 1em;
+	cursor: pointer;
+}
+            
+td.add_button:hover
+{
+	color: black;
+}

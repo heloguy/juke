@@ -1,0 +1,47 @@
+{
+	"BundleType": "Application",
+	"BundleIdentifier": "juke",
+	"BundleVersion": "0.1b",
+	"AcceptedLinkTypes":[
+		"album",
+		"artist",
+		"track",
+		"playlist",
+		"user"
+	],
+	"AppIcon": {
+		"18x18": "icon.png"
+	},
+	"AppName": {
+		"en": "juke"
+	},
+	"SupportedLanguages": [
+		"en"
+	],
+	"DefaultTabs": [
+		{
+			"arguments": "player",
+			"title": {
+				"en": "Player"
+			}
+		}, 
+		{
+			"arguments": "social",
+			"title": {
+				"en": "Social"
+			}
+		},
+		{
+			"arguments": "search",
+			"title": {
+				"en": "Search"
+			}
+        }
+	],
+	"RequiredPermissions": [
+		"https://*",
+		"http://*"
+	],
+	"RequiredInterface": "1",
+	"VendorIdentifier": "com.mmartin"
+}
