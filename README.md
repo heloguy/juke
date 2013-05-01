@@ -8,7 +8,7 @@ Prerequisites
 Installation
 ------------
 
-1. Copy the files in 'www' to a subdirectory of your web server root (/var/www/juke, etc, C:\xampp\htdocs\juke, etc).
+1. Copy the files in 'www' to a subdirectory of your web server root (/var/www/juke, C:\xampp\htdocs\juke, etc).
 2. Copy the files in 'Spotify' to your "~/Spotify" directory (Linux, OS X) or "Documents/Spotify" (Windows). Create said directory, if it doesn't exist.
 3. Create a SQL database and import "init/juke.sql". This should create three tables in your new DB.
 4. Copy the config files "config.const.php" and "config.const.js" to wherever you want them to live.
