@@ -1,6 +1,6 @@
 <?php
 
-include("config.const.php");
+include("../config/config.const.php"); // change to config file path
 
 if (isset($_POST['params']) && isset($_POST['func']))
 {	

@@ -1,16 +1,15 @@
-AJAX_PHP_URL = "http://10.0.0.4/juke/ajax_anon.php";
+UPDATE_INTERVAL = 100; // in milliseconds
 
-// Asynchronous ajax query function using post.
-function ajaxQuery(dest, object, callback)
-{
+// Wrapper for async AJAX POST request
+// dest: destination URL.
+// object: A JSON object.
+function ajaxQuery(dest, object, callback) {
     $.post(
         dest,
 
         object,
 
-        function(data)
-        {
-			console.log(data);
+        function(data){
             callback(data);
 			// Add this entry to the GUI dynamically.
         },
@@ -19,14 +18,13 @@ function ajaxQuery(dest, object, callback)
         );
 }
 
-function updateNowPlaying(artist, track, uri)
-{
+// Updates now playing with metadata for artist, track, and uri.
+function updateNowPlaying(artist, track, uri) {
     $("#now_playing_dialog").html("<table class='even'><tr style='margin: 50px;'><td>"+track+"</td><td>"+artist+"</td></tr></table>");
 }
 
-// Send an ajax request that will search spotify for the input and return it.
-function search()
-{
+// Send an ajax request that will search spotify for some input and return it.
+function search() {
     var jsonObj = {
         "query": $("#search").val().replace(/ /g, "_"),
         "type":  $("#search_type").val()
@@ -36,29 +34,26 @@ function search()
         func: "search", 
         params: jsonObj
     }, 
-    function(data)
-    {
+	
+    function(data) {
         $("#results").html("");
         var populate_string = "<table><tr class='header_row'><td></td><td>Track</td><td>Artist</td><td>Album</td><td>Popularity</td></tr>";
         var i = 0;
         var even_or_odd = "even";
             
-        if(!data.reason)
-        {
+        if(!data.reason) {
             $("#results").html("Nothing found.");
             return;
         }
             
-        $.each(data.reason.tracks, function(track_i, track)
-        {
+        $.each(data.reason.tracks, function(track_i, track) {
             var album = track.album.name;
             var href = track.href;
             var track_name = track.name;
             var artists = [];
             var popularity = track.popularity;
                 
-            $.each(track.artists, function (artist_i, artist)
-            {
+            $.each(track.artists, function (artist_i, artist) {
                 artists.push(artist.name);
             });
                 
@@ -66,8 +61,7 @@ function search()
                 
             artists = artists.join(", ");
 			
-            if(i % 2 == 0)
-            {
+            if(i % 2 == 0) {
                 even_or_odd = "even";
             }
                 
@@ -75,7 +69,6 @@ function search()
                 
 			// Popularity meter
             var pop_width = Math.round(popularity * 100);
-            console.log(pop_width);
                 
             var div = "<tr class='music_content'><td><input class='add_button' track_name=\""+track_name+"\" artists=\""+artists+"\" spot_link=\""+href+"\" type='button' value='+'/></td>"+
             "<td>"+track_name+
@@ -93,21 +86,17 @@ function search()
 }
     
 // Check for updates to song playing so we can adjust the UI.
-function checkForUpdates()
-{
+function checkForUpdates() {
 	var jsonObj = {
 		"default": 1
 	};
 	
-	setTimeout(function()
-	{
+	setTimeout(function() {
 		ajaxQuery(AJAX_PHP_URL, {
 			func: "get_playlist",
 			params: jsonObj
 		}, 
-		function(data)
-		{
-			console.log(data);
+		function(data) {
 			$("#now_playing").attr("value", "Refresh Now Playing");
 			$("#dialog").html(data.reason.html);
 			
@@ -117,18 +106,16 @@ function checkForUpdates()
 			checkForUpdates();
 		});
 
-	}, 100);
+	}, UPDATE_INTERVAL);
 }
 
-$(document).ready(function() 
-{   
-    $("#search_button").click(function()
-    {
+// Initialize callbacks for UI interaction.
+function initUI() {
+    $("#search_button").click(function() {
         search();
     });
     
-    $("#prev").click(function()
-    {
+    $("#prev").click(function() {
         var jsonObj = {
             "command": "prev"
         };
@@ -143,8 +130,7 @@ $(document).ready(function()
         });
     });
 
-    $("#play").click(function()
-    {
+    $("#play").click(function() {
         var jsonObj = {
             "command": "play"
         };
@@ -159,8 +145,7 @@ $(document).ready(function()
         });
     });
 
-    $("#next").click(function()
-    {
+    $("#next").click(function() {
         var jsonObj = {
             "command": "next"
         };
@@ -176,8 +161,7 @@ $(document).ready(function()
     });
     
 	// Unsupported in the API: Deprecated.
-    $("#volume_down").click(function()
-    {
+    $("#volume_down").click(function() {
         var jsonObj = {
             "command": "volume_down"
         };
@@ -193,8 +177,7 @@ $(document).ready(function()
         });
     });
     // Unsupported in the API: Deprecated.
-    $("#volume_up").click(function()
-    {
+    $("#volume_up").click(function() {
         var jsonObj = {
             "command": "volume_up"
         };
@@ -210,8 +193,7 @@ $(document).ready(function()
         });
     });
 
-    $(".add_button").live("click", function()
-    {
+    $(".add_button").live("click", function() {
         var jsonObj = {
             "uri": $(this).attr("spot_link"),
             "track": $(this).attr("track_name"),
@@ -237,10 +219,8 @@ $(document).ready(function()
         func: "get_playlist",
         params: jsonObj
     }, 
-		function(data)
-		{
+		function(data) {
 			$("#now_playing").attr("value", "Refresh Now Playing");
-			//console.log(data);
 			$("#dialog").html(data.reason.html);
 			$( "#dialog" ).dialog({
 				width: 700, 
@@ -260,8 +240,7 @@ $(document).ready(function()
 		}
 	);
 
-    $("#now_playing").live("click", function()
-    {
+    $("#now_playing").live("click", function() {
         var jsonObj = {
             "default": 1
         };
@@ -271,8 +250,7 @@ $(document).ready(function()
             func: "get_playlist",
             params: jsonObj
         }, 
-        function(data)
-        {
+        function(data) {
             $("#now_playing").attr("value", "Refresh Now Playing");
 
             $("#dialog").html(data.reason.html);
@@ -292,6 +270,9 @@ $(document).ready(function()
             updateNowPlaying(now_playing.artist, now_playing.track, now_playing.uri);
         });
     });
-	
+}
+
+$(document).ready(function() {   
+	initUI();
     checkForUpdates();
 });
