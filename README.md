@@ -1,3 +1,11 @@
+# Juke
+
+Juke launches a lightweight Node server on the host machine and broadcasts a GUI endpoint/RESTful API to anyone on the same network. People on the network can add songs to a shared playlist from any device.
+
+The server ingests the song requests and connects to a Spotify account to play them in order. The owner can control playback from the host machine or use an admin password to unlock the same controls on their phone.
+
+<img src="juke_ss.png" width=600/>
+
 Prerequisites
 -------------
 
